@@ -1,43 +1,35 @@
 <x-layout>
-
-
-    <main>
         <h1 class="text-3xl font-bold text-center">Jobs</h1>
-       <div class="flex gap-2 justify-center align-middle">
-        <div class="m-4">
-            <ul>
-                @foreach ($categories as $category)
-                <li>{{$category}}</li>
-                @endforeach
-            </ul>
-        </div>
-        <div class="m-4">
-            <ul>
-                @foreach ($experiences as $experience)
-                    <li>{{$experience}}</li>
-                @endforeach
-            </ul>
-        </div>
-       </div>
 
-        <div class="container m-auto">
-            @foreach ($jobs as $job)
-            <div class="my-5 p-5 border border-slate-950 sm:w-3/12 md:w-2/3 lg:w-full">
-                <h1 class="text-lg font-bold">{{$job->title}} - {{$job->location}}</h1>
-                <h2 class="text-md text-slate-500">Salary: ${{$job->salary}}</h2>
-
-                <div class="my-5">
-                    <p class="text-slate-800 sm:w-1/2 md:w-2/3 lg:w-1/2">{{$job->description}}</p>
+        <div class="container mx-auto"> 
+            <x-breadcrumbs class="my-1 mx-3 w-3/4 md:w-11/12 lg:w-full" :links="['Jobs' => route('jobs.index')]" />
+            <x-card class="text-sm">
+                <div class="mb-4 grid grid-cols-2 gap-4">
+                    <div>
+                        <h2 class="mb-1 font-semibold">Search</h2>
+                        <x-text-input name="search" value="" placeholder="Search for Anything!"/>
+                    </div>
+                    <div>
+                        <h2 class="mb-1 font-semibold">Mininum to Maximum Salary</h2>
+                        <div class="flex space-x-2">
+                            <x-text-input name="min_val" value="" placeholder="From"/>
+                            <x-text-input name="max_val" value="" placeholder="To"/>
+                        </div>
+                    </div>
+                    <div>3</div>
+                    <div>4</div>
                 </div>
-
-                <div class="my-5">
-                    <h3 class="text-sm text-slate-400">Category: {{$job->category}}</h3>
-                    <h3 class="text-sm text-slate-400">Experience Needed: {{$job->experience}}</h3>
-                </div>
-
-                <button class="bg-neutral-400 p-2 font-bold text-slate-700 border rounded hover:text-red-900">Apply Now</button>
+            </x-card>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+                @foreach ($jobs as $job)
+                    <div class="flex h-full">
+                        <x-home-job-card :job="$job" class="overflow-hidden w-full">
+                            <x-link-button :href="route('jobs.show', $job)">
+                                Show
+                            </x-link-button>
+                        </x-home-job-card>
+                    </div>
+                @endforeach
             </div>
-            @endforeach
-        </div>
-    </main>
+        </div>        
    </x-layout>
