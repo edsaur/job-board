@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\JobController;
+use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [JobController::class, 'index']);
+Route::resource('jobs', JobController::class)->only('index');
