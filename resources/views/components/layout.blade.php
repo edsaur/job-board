@@ -3,12 +3,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Job Board {{ $title ?? ''}}</title>
+        <title>Job Board {{ $title ?? '' }}</title>
         @vite('resources/css/app.css')
     </head>
-    <body>
-       <div>
+    <body class="bg-slate-200 container m-auto">
+        <main>
         {{$slot}}
-       </div>
+        </main>
     </body>
 </html>
