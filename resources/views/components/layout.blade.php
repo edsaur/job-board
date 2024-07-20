@@ -4,9 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Job Board {{ $title ?? '' }}</title>
-        @vite('resources/css/app.css')
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="bg-slate-200 container m-auto">
+    
+    <body class="bg-gradient-to-r from-indigo-200 via-purple-300 to-pink-100 container m-auto">
         <main>
         {{$slot}}
         </main>
